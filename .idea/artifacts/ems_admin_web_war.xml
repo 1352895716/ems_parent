@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ems_admin_web:war">
+    <output-path>$PROJECT_DIR$/ems_admin_web/target</output-path>
+    <root id="archive" name="ems_admin_web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ems_admin_web:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ems_pojo" />
+          <element id="module-output" name="ems_interface" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.28" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Maven: com.alibaba:dubbo:2.8.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.4.RELEASE" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

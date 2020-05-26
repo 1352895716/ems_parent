@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>员工信息管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../plugins/select2/select2.css" />
+    <link rel="stylesheet" href="../plugins/select2/select2-bootstrap.css" />
+    <script src="../plugins/select2/select2.min.js" type="text/javascript"></script>
+
+	<!--手动引入部分-->
+	<!--1. 引入angularjs-->
+	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+	<!--2. 分页组件开始 -->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- 分页组件结束 -->
+	<!--3. 引入模块，控制层，服务层-->
+	<script src="../js/base_pagnation.js"></script>
+	<script type="text/javascript" src="../js/angular-select2.js">  </script><!--要放在base才能生效-->
+	<script src="../js/service/trainingService.js"></script>
+	<script src="../js/controller/basee2Controller.js"></script>
+	<script src="../js/controller/trainingController.js"></script>
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="ems" ng-controller="trainingController">
+  <!-- .box-body -->
+                
+                    <div class="box-header with-border">
+                        <h3 class="box-title">培训管理</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+
+                            <!--工具栏-->
+                            <div class="pull-left">
+                                <div class="form-group form-inline">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-tools pull-right">
+
+                                <div class="has-feedback">
+									培训名称：<input  ng-model="searchEntity.title">
+									培训方式：<input  ng-model="searchEntity.method">
+									<button class="btn btn-default" ng-click="reloadList()">查询</button>
+                                </div>
+                            </div>
+                            <!--工具栏/-->
+
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                      <thead>
+			                          <tr>
+										  <th class="sorting_asc">序号</th>
+										  <th class="sorting_asc">培训名称</th>
+										  <th class="sorting">培训方式</th>
+										  <th class="sorting">培训目的</th>
+										  <th class="sorting">培训预算</th>
+										  <th class="sorting">培训开始时间</th>
+										  <th class="sorting">培训结束时间</th>
+					                      <th class="text-center">操作</th>
+			                          </tr>
+			                      </thead>
+			                      <tbody>
+
+									  <tr ng-repeat="pojo in list">
+			                              <td>{{$index+1}}</td>
+				                          <td>{{pojo.title}}</td>
+										  <td>{{pojo.method}}</td>
+									      <td>{{pojo.purpose}}</td>
+									      <td>{{pojo.budget}}</td>
+										  <td>{{pojo.startTime}}</td>
+									      <td>{{pojo.endTime}}</td>
+		                                  <td class="text-center">
+		                                 	  <button type="button" class="btn bg-olive btn-xs"  data-toggle="modal" data-target="#editModal" ng-click="findOne(pojo.id)">详情</button>
+		                                  </td>
+			                          </tr>
+			                      </tbody>
+			                  </table>
+			                  <!--数据列表/-->
+
+							<!-- 分页 -->
+							<tm-pagination conf="paginationConf"></tm-pagination>
+
+						</div>
+                        <!-- 数据表格 /-->
+                     </div>
+                    <!-- /.box-body -->
+<!-- 编辑窗口 -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" >
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">培训信息</h3>
+		</div>
+		<div class="modal-body">
+			<div class="nav-tabs-custom">
+				<!--tab头-->
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#home" data-toggle="tab">培训基本信息</a>
+					</li>
+					<li >
+						<a href="#content" data-toggle="tab">培训内容</a>
+					</li>
+				</ul>
+				<!--tab头/-->
+
+				<!--tab内容-->
+				<div class="tab-content">
+
+					<!--基本信息-->
+					<div class="tab-pane active" id="home">
+
+						<div class="row data-type">
+							<table class="table table-bordered table-striped"  width="800px">
+								<tr>
+									<td>培训编号</td>
+									<td>{{entity.number}} </td>
+								</tr>
+								<tr>
+									<td>培训名称</td>
+									<td>{{entity.title}} </td>
+								</tr>
+								<tr>
+									<td>预算</td>
+									<td>
+										{{entity.budget}}
+									</td>
+								</tr>
+								<tr>
+									<td>培训目的</td>
+									<td>
+										{{entity.purpose}}
+									</td>
+								</tr>
+								<tr>
+									<td>培训开始时间</td>
+									<td>
+										{{entity.startTime}}
+									</td>
+								</tr>
+								<tr>
+									<td>培训结束时间</td>
+									<td>
+										{{entity.endTime}}
+									</td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+
+					<!--工作信息-->
+					<div class="tab-pane" id="content">
+						<div class="row data-type">
+
+
+							<div class="col-md-2 title editer">培训介绍</div>
+							<div class="col-md-10 data editer">
+								<div rows="6"  class="form-control"  >
+									{{entity.content}}
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--tab内容/-->
+				<!--表单内容/-->
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+		</div>
+	  </div>
+	</div>
+</div>
+    
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/ems_admin_web" />
+    <file type="web" url="file://$PROJECT_DIR$/ems_hr_web" />
+    <file type="web" url="file://$PROJECT_DIR$/ems_service" />
+    <file type="web" url="file://$PROJECT_DIR$/ems_user" />
+    <file type="web" url="file://$PROJECT_DIR$/ems_user2_web" />
+    <file type="web" url="file://$PROJECT_DIR$/ems_user_web" />
+    <file type="web" url="file://$PROJECT_DIR$/security_demo" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/sms_service/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/ems_admin_web/pom.xml" />
+        <option value="$PROJECT_DIR$/ems_user/pom.xml" />
+        <option value="$PROJECT_DIR$/ems_user2_web/pom.xml" />
+        <option value="$PROJECT_DIR$/ems_user_web/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

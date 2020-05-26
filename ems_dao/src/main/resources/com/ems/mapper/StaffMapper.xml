@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ems.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.ems.pojo.Staff" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="political" property="political" jdbcType="VARCHAR" />
+    <result column="is_married" property="isMarried" jdbcType="VARCHAR" />
+    <result column="work_experience" property="workExperience" jdbcType="VARCHAR" />
+    <result column="education_backgroud" property="educationBackgroud" jdbcType="VARCHAR" />
+    <result column="health" property="health" jdbcType="VARCHAR" />
+    <result column="work_time" property="workTime" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, number, name, sex, age, position, password, create_time, phone, email, major, 
+    nation, address, id_number, political, is_married, work_experience, education_backgroud, 
+    health, work_time, department
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ems.pojo.StaffExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from staff
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ems.pojo.StaffExample" >
+    delete from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ems.pojo.Staff" >
+    insert into staff (id, number, name, 
+      sex, age, position, password, 
+      create_time, phone, email, 
+      major, nation, address, 
+      id_number, political, is_married, 
+      work_experience, education_backgroud, health, 
+      work_time, department)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=BIT}, #{age,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{political,jdbcType=VARCHAR}, #{isMarried,jdbcType=VARCHAR}, 
+      #{workExperience,jdbcType=VARCHAR}, #{educationBackgroud,jdbcType=VARCHAR}, #{health,jdbcType=VARCHAR}, 
+      #{workTime,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ems.pojo.Staff" >
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="political != null" >
+        political,
+      </if>
+      <if test="isMarried != null" >
+        is_married,
+      </if>
+      <if test="workExperience != null" >
+        work_experience,
+      </if>
+      <if test="educationBackgroud != null" >
+        education_backgroud,
+      </if>
+      <if test="health != null" >
+        health,
+      </if>
+      <if test="workTime != null" >
+        work_time,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="political != null" >
+        #{political,jdbcType=VARCHAR},
+      </if>
+      <if test="isMarried != null" >
+        #{isMarried,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperience != null" >
+        #{workExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackgroud != null" >
+        #{educationBackgroud,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        #{workTime,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ems.pojo.StaffExample" resultType="java.lang.Integer" >
+    select count(*) from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update staff
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=BIT},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null" >
+        major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNumber != null" >
+        id_number = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.political != null" >
+        political = #{record.political,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMarried != null" >
+        is_married = #{record.isMarried,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workExperience != null" >
+        work_experience = #{record.workExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.educationBackgroud != null" >
+        education_backgroud = #{record.educationBackgroud,jdbcType=VARCHAR},
+      </if>
+      <if test="record.health != null" >
+        health = #{record.health,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTime != null" >
+        work_time = #{record.workTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update staff
+    set id = #{record.id,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=BIT},
+      age = #{record.age,jdbcType=INTEGER},
+      position = #{record.position,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      political = #{record.political,jdbcType=VARCHAR},
+      is_married = #{record.isMarried,jdbcType=VARCHAR},
+      work_experience = #{record.workExperience,jdbcType=VARCHAR},
+      education_backgroud = #{record.educationBackgroud,jdbcType=VARCHAR},
+      health = #{record.health,jdbcType=VARCHAR},
+      work_time = #{record.workTime,jdbcType=INTEGER},
+      department = #{record.department,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ems.pojo.Staff" >
+    update staff
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="political != null" >
+        political = #{political,jdbcType=VARCHAR},
+      </if>
+      <if test="isMarried != null" >
+        is_married = #{isMarried,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperience != null" >
+        work_experience = #{workExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackgroud != null" >
+        education_backgroud = #{educationBackgroud,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        health = #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        work_time = #{workTime,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ems.pojo.Staff" >
+    update staff
+    set number = #{number,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=BIT},
+      age = #{age,jdbcType=INTEGER},
+      position = #{position,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      political = #{political,jdbcType=VARCHAR},
+      is_married = #{isMarried,jdbcType=VARCHAR},
+      work_experience = #{workExperience,jdbcType=VARCHAR},
+      education_backgroud = #{educationBackgroud,jdbcType=VARCHAR},
+      health = #{health,jdbcType=VARCHAR},
+      work_time = #{workTime,jdbcType=INTEGER},
+      department = #{department,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

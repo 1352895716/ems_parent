@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--移动端公用-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>通知详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../css/me.css">
+
+    <!--手动引入部分-->
+    <!--1. 引入angularjs-->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!--2. 分页组件开始 -->
+    <!-- 分页组件结束 -->
+    <!--3. 引入模块，控制层，服务层-->
+    <script src="../js/base.js"></script>
+    <script src="../js/service/documentService.js"></script>
+    <script src="../js/controller/doController.js"></script>
+</head>
+<body ng-app="ems" ng-controller="doController" ng-init="find()">
+    <!--导航-->
+    <nav class="ui inverted attached segment m-padded-tb-mini">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">起凡科技</h2>
+                <a href="#" class="m-item item m-mobile-hide"></a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>公司首页</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>公司概况</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>公司部门</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>人才引进</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini rss icon"></i>网络服务</a>
+                <div class="right m-item item m-mobile-hide">        <!--transparent-->
+                    <div class="ui icon inverted  input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+                <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+                    <i class="sidebar icon"></i>
+                </a>
+            </div>
+        </div>
+
+    </nav>
+    <!--内容-->
+    <div class="m-padded-tb-big">
+        <div class="ui container">
+            <!--attached 可以使两个区域连接在一起-->
+            <div class="ui top attached segment">
+                <div class="ui horizontal link list">
+                    <div class="item">
+                        <div class="content"><i class="user icon"></i>{{entity.units}}</div>
+                    </div>
+                    <div class="item">
+                        <i class="calendar icon"></i> {{entity.time}}
+                    </div>
+                    <div class="item">
+                        <i class="eye icon"></i> 2343
+                    </div>
+                </div>
+            </div>
+            <div class="ui attached padded segment">
+                <h2 class="ui center aligned header">{{entity.title}}</h2>
+                <div id="content" class="m-padded-lr-responsive m-padded-tb-large">
+                    {{entity.body}}
+                </div>
+
+            </div>
+            <div class="ui attached positive message">
+                <!--middle aligned 水平方向的居中-->
+                <div class="ui middle aligned grid">
+                    <div class="eleven wide column">
+                        <div class="list">
+                            <li>作者： admin</li>
+                            <li>作者： admin</li>
+                            <li>作者： admin</li>
+                            <li>作者： 财务部</li>
+                        </div>
+                    </div>
+                    <div class="five wide column">
+                        <img src="./static/images/wechat.jpg" class="ui right floated rounded bordered image" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!--底部-->
+    <footer class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <img src="../img/wechat.jpg" class="ui rounded image" style="width: 100px">
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">联系我们</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email: 1352895716@qq.com</a>
+                        <a href="#" class="item">QQ: 1352895716</a>
+                        <a href="#" class="item">地址: 河南省新郑市龙湖镇</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">公司简介</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">
+                        “起凡科技有限公司”是一家具有业务特色的小型科技类企业，在人员管理和业务管理等方面需要符合公司本身的特点。
+                    </p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright @ 2020 - 2021 Zlp Designed by Zlp</p>
+        </div>
+    </footer>
+
+    <script src="../js/plugins/jquery/jquery.min.js"></script>
+    <script src="../js/plugins/semantic.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>-->
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+    </script>
+</body>
+</html>

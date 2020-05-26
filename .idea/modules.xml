@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ems_dao/ems_dao.iml" filepath="$PROJECT_DIR$/ems_dao/ems_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems_hr_web/ems_hr_web.iml" filepath="$PROJECT_DIR$/ems_hr_web/ems_hr_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems_interface/ems_interface.iml" filepath="$PROJECT_DIR$/ems_interface/ems_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems_parent.iml" filepath="$PROJECT_DIR$/ems_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems_pojo/ems_pojo.iml" filepath="$PROJECT_DIR$/ems_pojo/ems_pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems_service/ems_service.iml" filepath="$PROJECT_DIR$/ems_service/ems_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ems_user_web/ems_user_web.iml" filepath="$PROJECT_DIR$/ems_user_web/ems_user_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms_service/sms_service.iml" filepath="$PROJECT_DIR$/sms_service/sms_service.iml" />
+    </modules>
+  </component>
+</project>

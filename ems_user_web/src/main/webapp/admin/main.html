@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--移动端公用-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <!--<link rel="stylesheet" href="../css/semantic.min.css">-->
+    <link rel="stylesheet" href="../css/me.css">
+
+    <!--手动引入部分-->
+    <!--1. 引入angularjs-->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!--2. 分页组件开始 -->
+    <!-- 分页组件结束 -->
+    <!--3. 引入模块，控制层，服务层-->
+    <script src="../js/base.js"></script>
+    <script src="../js/service/documentService.js"></script>
+    <script src="../js/service/staffService.js"></script>
+    <script src="../js/service/thingService.js"></script>
+    <script src="../js/controller/basee2Controller.js"></script>
+    <script src="../js/controller/documentController.js"></script>
+
+</head>
+<body ng-app="ems" ng-controller="documentController" ng-init="findAll();cha()">
+    <div class="m-padded-lr-big" style="padding-top: 10px">
+        <h1 class="m-text-thin">控制面板</h1>
+    </div>
+    <!--导航-->
+   <div class="m-padded-lr-big" style="padding-top: 10px">
+       <div class="ui segment">
+            {{timeString}}
+
+
+       </div>
+   </div>
+    <!--内容-->
+    <div class="m-padded-lr-big m-padded-tb">
+            <div class="ui stackable grid">
+                <!--左边的博客列表-->
+                <div class="ten wide column">
+
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <i class="announcement icon"></i>最新通知
+                                </div>
+                                <div class="right aligned column">
+                                    <a href="#" id="aaa">more <i class="angle double right icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui segment" ng-repeat="pojo in list">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <a href="document.html#?id={{pojo.id}}" target="_blank" class="m-block">
+                                            {{pojo.title}}
+                                    </a>
+                                 <!--   <div class="ui teal basic left pointing label m-padded-mini">{{pojo.time}}</div>-->
+                                </div>
+                                <div class="right aligned column">
+                                    {{pojo.time}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--右边的top-->
+                <div class="six wide column">
+                    <!--最新推荐-->
+                    <div class="ui segments ">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <i class="bookmark icon"></i>本周待办事项
+                                </div>
+                                <div class="right aligned column">
+                                    <a href="#" id="addThing">
+                                        <i class="plus icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui segment" ng-repeat="pojo2 in thingList">
+                            <!--<a href="#" class="m-block">{{pojo2.body}}</a>-->
+                            <div class="ui grid">
+                                <div class="fourteen wide column">
+                                    <a href="#" class="m-block">
+                                        {{pojo2.body}}
+                                    </a>
+                                </div>
+                                <div class="two right aligned wide column">
+                                    <a href="#" ng-click="deleThing(pojo2.id)" class="m-block"><i class="trash outline icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="ui small modal">
+        <i class="close icon"></i>
+        <div class="header m-text-thin">
+            待办事项添加
+        </div>
+        <div class="content">
+
+            <div style="width: inherit">
+                <textarea type="text" style="width: inherit" ng-model="thing.body"></textarea>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black button">
+                关闭
+            </div>
+            <div class="ui positive right button" ng-click="saveThing()">
+                保存
+            </div>
+        </div>
+    </div>
+
+    <!--底部-->
+    <script src="../js/plugins/jquery/jquery.min.js"></script>
+    <script src="../js/plugins/semantic.min.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>-->
+    <script>
+
+        $(function () {
+            $("#addThing").on("click",function () {
+                $(".ui.modal").modal("show");
+            })
+        })
+    </script>
+</body>
+</html>

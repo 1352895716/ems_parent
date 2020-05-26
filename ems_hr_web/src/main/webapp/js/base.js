@@ -1,0 +1,1 @@
+var app = angular.module('ems',[]);//定义品优购模块

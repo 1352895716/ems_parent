@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ems_dao" />
+        <module name="ems_hr_web" />
+        <module name="ems_interface" />
+        <module name="ems_pojo" />
+        <module name="ems_service" />
+        <module name="ems_user_web" />
+        <module name="sms_service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ems_admin_web" target="1.7" />
+      <module name="ems_dao" target="1.7" />
+      <module name="ems_hr_web" target="1.7" />
+      <module name="ems_interface" target="1.7" />
+      <module name="ems_parent" target="1.7" />
+      <module name="ems_pojo" target="1.7" />
+      <module name="ems_service" target="1.7" />
+      <module name="ems_user_web" target="1.7" />
+      <module name="ems_user_web (1)" target="1.7" />
+      <module name="security_demo" target="1.7" />
+      <module name="sms_service" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

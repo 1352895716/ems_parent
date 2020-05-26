@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品编辑</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+  
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!--手动引入部分-->
+	<!--1. 引入angularjs-->
+	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+
+	<!-- 分页组件结束 -->
+	<!--3. 引入模块，控制层，服务层-->
+
+
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script src="../js/service/staffService.js"></script>
+	<script src="../js/controller/staffController.js"></script>
+    
+      
+    
+    
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="ems" ng-controller="staffController" ng-init="findEntity();findAllSection()">
+
+            <!-- 正文区域 -->
+            <section class="content">
+
+                <div class="box-body">
+
+                    <!--tab页-->
+                    <div class="nav-tabs-custom">
+
+                        <!--tab头-->
+                        <ul class="nav nav-tabs">                       		
+                            <li class="active">
+                                <a href="#home" data-toggle="tab">基本信息</a>
+                            </li>   
+                            <li >
+                                <a href="#pic_upload" data-toggle="tab">工作经历</a>
+                            </li>    
+                            <li >
+                                <a href="#customAttribute" data-toggle="tab">教育信息</a>
+                            </li>     
+                            <li >
+                                <a href="#spec" data-toggle="tab" >联系信息</a>
+                            </li>                       
+                        </ul>
+                        <!--tab头/-->
+						
+                        <!--tab内容-->
+                        <div class="tab-content">
+
+                            <!--基本信息-->
+                            <div class="tab-pane active" id="home">
+                                <div class="row data-type">
+
+		                           <div class="col-md-2 title">姓名</div>
+		                           <div class="col-md-10 data">
+		                               {{entity.name}}
+		                           </div>
+		                           
+		                           <div class="col-md-2 title">性别</div>
+		                           <div class="col-md-10 data">
+										{{sex}}
+		                           </div>
+		
+								   <div class="col-md-2 title">年龄</div>
+		                           <div class="col-md-10 data">
+									   {{entity.age}}
+		                           </div>
+		                           
+		                           <div class="col-md-2 title">部门</div>
+		                           <div class="col-md-10 data">
+									   {{entity.department}}
+		                           </div>
+									<div class="col-md-2 title">民族</div>
+									<div class="col-md-10 data">
+										{{entity.nation}}
+									</div>
+									<div class="col-md-2 title">婚姻状况</div>
+									<div class="col-md-10 data">
+										{{married}}
+									</div>
+									<div class="col-md-2 title">政治面貌</div>
+									<div class="col-md-10 data">
+										{{entity.political}}
+									</div>
+									<div class="col-md-2 title">身份证号</div>
+									<div class="col-md-10 data">
+										{{entity.idNumber}}
+									</div>
+									<div class="col-md-2 title">住址</div>
+									<div class="col-md-10 data">
+										{{entity.address}}
+									</div>
+		                           
+		                           <!--<div class="col-md-2 title editer">商品介绍</div>
+                                   <div class="col-md-10 data editer">
+                                       <textarea name="content" style="width:800px;height:400px;visibility:hidden;" ></textarea>
+                                   </div>
+		                           
+		                           <div class="col-md-2 title rowHeight2x">包装列表</div>
+		                           <div class="col-md-10 data rowHeight2x">
+		                               
+		                           	<textarea rows="4"  class="form-control"   placeholder="包装列表"></textarea>
+		                           </div>
+		                           
+		                           <div class="col-md-2 title rowHeight2x">售后服务</div>
+		                           <div class="col-md-10 data rowHeight2x">
+		                               <textarea rows="4"  class="form-control"    placeholder="售后服务"></textarea>
+		                           </div>      -->
+                                  
+                                    
+                                </div>
+                            </div>
+                            
+                            <!--工作信息-->
+                            <div class="tab-pane" id="pic_upload">
+                                <div class="row data-type">
+
+									<div class="col-md-2 title">工作时间(年)</div>
+									<div class="col-md-10 data">
+										{{entity.workTime}}
+									</div>
+									<div class="col-md-2 title rowHeight2x">工作经历</div>
+									<div class="col-md-10 data rowHeight2x">
+
+									<!--	<textarea rows="4"  class="form-control">
+
+										</textarea>-->
+										<p>
+											{{entity.workExperience}}
+										</p>
+									</div>
+									<div class="col-md-2 title">现任职位</div>
+									<div class="col-md-10 data">
+										{{entity.position}}
+									</div>
+									<div class="col-md-2 title">入职日期</div>
+									<div class="col-md-10 data">
+										{{entity.createTime}}
+									</div>
+                                </div>
+                            </div>
+                           
+                           
+                            <!--教育信息-->
+                            <div class="tab-pane" id="customAttribute">
+                                <div class="row data-type">                                
+	                                <div>
+		                                <div class="col-md-2 title">学历</div>
+				                        <div class="col-md-10 data">
+											{{entity.educationBackgroud}}
+				                        </div>
+	                                </div>       
+									<div>
+		                                <div class="col-md-2 title">专业</div>
+				                        <div class="col-md-10 data">
+											{{entity.major}}
+				                        </div>
+	                                </div>  									
+                                </div>
+                            </div>
+                      
+                            <!--联系信息-->
+                            <div class="tab-pane" id="spec">
+
+                            	<div class="row data-type">
+
+									<div>
+										<div class="col-md-2 title">手机号</div>
+										<div class="col-md-10 data">
+											{{entity.phone}}
+										</div>
+									</div>
+									<div>
+										<div class="col-md-2 title">邮箱</div>
+										<div class="col-md-10 data">
+											{{entity.email}}
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                        <!--tab内容/-->
+						<!--表单内容/-->
+                    </div>
+				</div>
+
+
+                  <div class="btn-toolbar list-toolbar">
+
+				      <a href="main.html" class="btn btn-default" >返回首页</a>
+				  </div>
+            </section>
+
+            
+            <!-- 正文区域 /-->
+       
+</body>
+
+</html>
